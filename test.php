@@ -1,4 +1,4 @@
 <?php
 echo "tag";
-echot "tag2";
+echo "tag3";
 ?>
