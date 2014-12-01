@@ -87,9 +87,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 */
 
 $route['translate_uri_dashes'] = FALSE;
+$route['document/create'] = 'document/create';
 $route['document/(:any)'] = 'document/view/$1';
-//$route['document']="document";
-$route['blog']="blog";
 $route['default_controller'] = "blog";
 $route['404_override'] = '';
 

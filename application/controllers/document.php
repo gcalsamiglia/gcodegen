@@ -39,32 +39,32 @@ class document extends CI_Controller {
                 $this->load->view('document', $data);
                 $this->load->view('templates/footer');                
         }
-        /*        
-        public function create()
-        {
-                $this->load->helper('form');
-                $this->load->library('form_validation');
+        
+		public function create()
+		{
+			$this->load->helper('form');
+			$this->load->library('form_validation');
 
-                $data['title'] = 'Create a news item';
+			$data['title'] = 'Création d\'un nouveau docuement';
 
-                $this->form_validation->set_rules('title', 'Title', 'required');
-                $this->form_validation->set_rules('text', 'text', 'required');
+			$this->form_validation->set_rules('name',
+											  'name',
+											  'required', 
+											  array('required'=>'The document name is required')
+											  );
 
-                if ($this->form_validation->run() === FALSE)
-                {
-                        $this->load->view('templates/header', $data);
-                        $this->load->view('news/create');
-                        $this->load->view('templates/footer');
-
-                }
-                else
-                {
-                        $this->news_model->set_news();
-                        //$data['newItem'] = set_value('title');
-                        $data['newItem'] = "greg";
-                        $this->load->view('news/success', $data);
-                }
-        }*/
+			if ($this->form_validation->run() === FALSE)
+			{
+				$this->load->view('templates/header', $data);
+				$this->load->view('document/create');
+				$this->load->view('templates/footer');
+			}
+			else
+			{
+				$this->document_model->set_document();
+				$this->load->view('document/success');
+			}
+		}
         
 }
 
