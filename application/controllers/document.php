@@ -5,24 +5,9 @@ class document extends CI_Controller {
 	{
 		parent::__construct();
 		$this->load->model('document_model');
+		$this->load->model('source_code_model');
                 
-	}
-
-/*	public function index()
-	{
-                //show_error("index()");
-
-                log_message('debug', 'public function index()');
-                //show_error('coucou');
-		$data['news'] = $this->news_model->get_news();
-                $data['title'] = 'News archive';
-                //show_error('coucou');
-                //show_error($data['news']);
-                $this->load->view('templates/header', $data);
-                $this->load->view('news/index', $data);
-                $this->load->view('templates/footer');                
-	}
-  */      
+	}     
 	public function view($doc_id)
 	{
             $doc_id = (string) $doc_id;    
@@ -38,34 +23,47 @@ class document extends CI_Controller {
                 $this->load->view('templates/header', $data);
                 $this->load->view('document', $data);
                 $this->load->view('templates/footer');                
-        }
-        
-		public function create()
+    }
+	public function create()
+	{
+		$this->load->helper('form');
+		$this->load->library('form_validation');
+
+		$data['title'] = 'Création d\'un nouveau document';
+
+		$this->form_validation->set_rules('name',
+										  'name',
+										  'required', 
+										  array('required'=>'The document name is required')
+										  );
+
+		if ($this->form_validation->run() === FALSE)
 		{
-			$this->load->helper('form');
-			$this->load->library('form_validation');
 
-			$data['title'] = 'Création d\'un nouveau docuement';
+			$data['source_code_list'] = $this->source_code_model->get_source_code_list();	
 
-			$this->form_validation->set_rules('name',
-											  'name',
-											  'required', 
-											  array('required'=>'The document name is required')
-											  );
-
-			if ($this->form_validation->run() === FALSE)
-			{
+			$this->load->view('templates/header', $data);
+			$this->load->view('document/create',$data);
+			$this->load->view('templates/footer');
+		}
+		else
+		{
+			if (!$this->document_model->set_document()){
 				$this->load->view('templates/header', $data);
 				$this->load->view('document/create');
-				$this->load->view('templates/footer');
+				$this->load->view('templates/footer');			
+			}else{
+				$data['doc_name'] 	= $this->document_model->input->post('name') ;
+				$data['title'] 		= 'Document created';
+
+				$this->load->view('templates/header', $data);
+				$this->load->view('document/success', $data);
+				$this->load->view('templates/footer');	
 			}
-			else
-			{
-				$this->document_model->set_document();
-				$this->load->view('document/success');
-			}
+
+
 		}
-        
+	}    
 }
 
 
