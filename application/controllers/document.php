@@ -24,6 +24,9 @@ class document extends CI_Controller {
                 $this->load->view('document', $data);
                 $this->load->view('templates/footer');                
     }
+
+
+
 	public function create()
 	{
 		$this->load->helper('form');
@@ -37,9 +40,13 @@ class document extends CI_Controller {
 										  array('required'=>'The document name is required')
 										  );
 
+		$this->form_validation->set_rules('sc_id',
+										  'Source code selection',
+										  'required');
+
+
 		if ($this->form_validation->run() === FALSE)
 		{
-
 			$data['source_code_list'] = $this->source_code_model->get_source_code_list();	
 
 			$this->load->view('templates/header', $data);
@@ -60,8 +67,6 @@ class document extends CI_Controller {
 				$this->load->view('document/success', $data);
 				$this->load->view('templates/footer');	
 			}
-
-
 		}
 	}    
 }

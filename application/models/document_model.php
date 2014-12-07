@@ -43,7 +43,7 @@ class document_model extends CI_Model {
     {       
             $data = array(
                     'doc_name'  => $this->input->post('name'),
-                    'doc_sc_id' => "4"
+                    'doc_sc_id' => $this->input->post('sc_id'),
             );
             if ($this->document_exists_by_name($data['doc_name']))
             {
