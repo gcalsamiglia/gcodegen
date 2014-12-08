@@ -7,7 +7,15 @@ class document extends CI_Controller {
 		$this->load->model('document_model');
 		$this->load->model('source_code_model');
                 
-	}     
+	}    
+
+	public function get_source_code_keywords_xml($sc_id){
+        $data['result'] = $this->source_code_model->get_source_code_naked($sc_id);
+        //echo $data['result'];
+        $this->load->view('document/getsourcecodekw', $data);
+    } 
+
+
 	public function view($doc_id)
 	{
             $doc_id = (string) $doc_id;    
@@ -24,8 +32,6 @@ class document extends CI_Controller {
                 $this->load->view('document', $data);
                 $this->load->view('templates/footer');                
     }
-
-
 
 	public function create()
 	{

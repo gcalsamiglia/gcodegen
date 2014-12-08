@@ -3,7 +3,6 @@ class document_model extends CI_Model {
 	public function __construct()
 	{
 		$this->load->database();
-        //var_dump($this);
 	}
         
     public function get_document($doc_id = FALSE)
@@ -19,6 +18,10 @@ class document_model extends CI_Model {
         return $query->row_array();
     }
 
+    public function get_source_code_keywords_xml($sc_id){
+        
+    }
+
     // --------------------------------------------------------------------------------------------------
     /**
      * Returns document existance by document name
@@ -32,7 +35,9 @@ class document_model extends CI_Model {
         return ($query->num_rows() > 0); 
     }
 
+    public function get_keywords($doc_id){
 
+    }
     // --------------------------------------------------------------------------------------------------
     /**
      * Add a document row according to the post datas ($this->input->post)
