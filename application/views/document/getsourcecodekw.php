@@ -1,4 +1,3 @@
-
 <?php
-	echo $result;
+	echo $json_encoded_keywords;
 ?>

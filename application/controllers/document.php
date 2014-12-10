@@ -5,15 +5,22 @@ class document extends CI_Controller {
 	{
 		parent::__construct();
 		$this->load->model('document_model');
-		$this->load->model('source_code_model');
-                
+		$this->load->model('source_code_model');    
 	}    
 
-	public function get_source_code_keywords_xml($sc_id){
+	public function get_source_code_keywords_json($sc_id){
+		// recup du source code brut
         $data['result'] = $this->source_code_model->get_source_code_naked($sc_id);
-        //echo $data['result'];
+        // split en fonction du séparateur
+        $splitted_source = preg_split("/@sc@/", $data['result'] );	
+        $keywords = array();
+        // On en saute 1 sur 2
+		for ($i = 1; $i < count($splitted_source) ; $i=$i+2) {
+		    $keywords[] = $splitted_source[$i];
+		}
+		$data['json_encoded_keywords'] = json_encode($keywords);
         $this->load->view('document/getsourcecodekw', $data);
-    } 
+    }
 
 
 	public function view($doc_id)
