@@ -22,7 +22,6 @@ class document extends CI_Controller {
         $this->load->view('document/getsourcecodekw', $data);
     }
 
-
 	public function view($doc_id)
 	{
             $doc_id = (string) $doc_id;    
@@ -57,6 +56,9 @@ class document extends CI_Controller {
 										  'Source code selection',
 										  'required');
 
+		$this->form_validation->set_rules('keyword[]', 
+										  'Keyword', 
+										  'required');
 
 		if ($this->form_validation->run() === FALSE)
 		{
