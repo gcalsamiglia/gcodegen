@@ -49,9 +49,15 @@ class document_model extends CI_Model {
                     'doc_sc_id' => $this->input->post('sc_id'),
             );
 
-            // TODO : insert keywords
-            $keywords = $this->input->post('keyword[]');
-            var_dump($keywords);
+
+            //$keywords = $this->input->post('keyword[]');
+            $form_datas = $this->input->post(NULL,TRUE);
+            foreach ($form_datas as $key => $value) {
+                if (substr($key,0,strlen($this->config->item('keyword_input_prefix'))) === $this->config->item('keyword_input_prefix')){
+                    $key_new = substr($key, strlen($this->config->item('keyword_input_prefix')));
+                    $keywords_input[$key_new] = $value;
+                }   
+            }    
 
             if ($this->document_exists_by_name($data['doc_name']))
             {
@@ -59,7 +65,33 @@ class document_model extends CI_Model {
             }
             else
             {
-                return $this->db->insert('document', $data);
+                $insert_result = $this->db->insert('document', $data);
+                if ($insert_result){
+                    $inserted_doc = $this->db->insert_id();
+                    // insertion de chaque keyword saisi
+                    foreach ($keywords_input as $key => $value) {
+                        $data = array(
+                                        'kw_syntaxic_code'    => $key,
+                                        'kw_translated_value' => $value,
+                                       );
+                        $insert_keyword_result = $this->db->insert('keyword', $data);
+                        if ($insert_keyword_result){
+                            $inserted_keyword = $this->db->insert_id();
+                            $data = array(
+                                            'kwl_document_id' => $inserted_doc,
+                                            'kwl_keyword_id'  => $inserted_keyword,
+                                          );
+                            $insert_keyword_list_result = $this->db->insert('keyword_list', $data);
+                            if (!$insert_keyword_list_result){
+                                return $insert_keyword_list_result;
+                            }     
+                        }
+                        else{
+                            return $insert_keyword_result;
+                        }
+                    } 
+                    return $insert_result;
+                }
             }
     }
 }

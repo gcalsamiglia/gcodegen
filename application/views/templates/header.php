@@ -4,3 +4,9 @@
     <title><?php echo $title ?></title>
 </head>
 <body>
+	<nav>
+		<ul>
+			<li><a href="/index.php/document/create">Create Document</a></li>
+			<li>Document list</li>
+		</ul>
+	</nav>	
