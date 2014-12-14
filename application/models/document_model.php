@@ -18,9 +18,7 @@ class document_model extends CI_Model {
         return $query->row_array();
     }
 
-    public function get_source_code_keywords_xml($sc_id){
-        
-    }
+
 
     // --------------------------------------------------------------------------------------------------
     /**

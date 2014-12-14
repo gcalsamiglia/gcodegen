@@ -1,22 +1,85 @@
+<?php
+	echo "<script>";
+	echo "$(document).ready((function() {";
+		if (isset($selected_sc_value)){
+			echo "preSelectSC('".$selected_sc_value."');";
+		}
+
+	echo "}));";	
+	echo "</script>";
+?>
+
 <script>
+	// create the keywords input list
+	function createKWSelect(){
+		$.get('getsourcecodekw/'+$('#sc_id option:selected').val(),function(data,status){
+			var data_decoded = eval('(' + data + ')');
+			var diiv = "";
+			$('#div_doc_keywords').text("");
+			$.each(data_decoded, function(key, val){
+				diiv += "<h5>"+val+"</h5>";
+				diiv += "<input type=\"text\" class=\"keyword["+key+"]\" id=\"keyword["+key+"]\" name=\"keyword["+key+"]\" value=\"\" size=\"50\" />";
+			});
+			$('#div_doc_keywords').prepend(diiv);
+			populateKWListCallBack();
+		});
+	}
+
 	$(document).ready((function() {
 		$('#sc_id').change(function() {
-			console.log( $('#sc_id option:selected').val() );
-			$.get('getsourcecodekw/'+$('#sc_id option:selected').val(),function(data,status){
-				var data_decoded = eval('(' + data + ')');
-				var diiv = "";
-				$('#div_doc_keywords').text("");
-				$.each(data_decoded, function(key, val){
-					diiv += "<h5>"+val+"</h5>";
-					diiv += "<input type=\"text\" name=\"keyword[]\" value=\"\" size=\"50\" />";
-				});
-				$('#div_doc_keywords').prepend(diiv);
-			});
+			createKWSelect();
 		});
+		createKWSelect();	
 	}));
+
+	// Populate the keyword input with already 
+	// inputed values
+	function populateKWList(input_name, input_value){
+		//console.log(input_name);
+		//console.log(input_value);
+		//console.log($('#div_doc_keywords > .'+input_name));
+		//console.log($('.div_doc_keywords').find('.'+input_name));
+		//console.log($('.div_doc_keywords').find('#'+input_name));
+		//console.log($('#div_doc_keywords').find('#'+input_name));
+		$chi = $('#div_doc_keywords').children();
+		console.log($chi[1].className);
+		console.log($chi.next(".keyword"));
+
+		if ($chi[1].className == input_name){
+			console.log('yesssss');
+		}
+		//console.log($chi);
+		//console.log($('#div_doc_keywords').children().find('.'+input_name));
+		
+		$('.div_doc_keywords').find("."+input_name).val(input_value);
+	}
+
+	function preSelectSC(sc_select_value){
+		//$('#sc_id').selected(sc_select_value);
+		$('#sc_id option[value='+sc_select_value+']').attr("selected", "selected");
+	}
+
+
+
 </script>
+
+<?php
+	echo "<script>";
+	echo "function populateKWListCallBack(){";
+		if (isset($keywords_input)){
+			echo "\n";
+			foreach ($keywords_input as $key => $value) {
+				echo "\n";
+				//echo "console.log('".$value."');";
+				echo "populateKWList('keyword[".$key."]','".$value."');";
+			}			
+		}
+	echo "};";
+	echo "</script>";
+?>
 <!--
-TODO : 
+TODO :
+	- refaire selectionner le source code dans le select 
 	- pour gérer la présaisie des keywords déjà saisis
 		- générer les input avec javascript comme au dessus
 		- créer une fonction javascript qui permet de rajouter la value dans un input
@@ -44,7 +107,7 @@ foreach($source_code_list as $source_code)
 echo '<br>';
 ?>
 </select> 
-<div id="div_doc_keywords">
+<div class="div_doc_keywords" id="div_doc_keywords">
 </div>
 <div><input type="submit" value="Submit" /></div>
 </form>

@@ -63,16 +63,18 @@ class document extends CI_Controller {
 		if ($this->form_validation->run() === FALSE)
 		{
 			$data['source_code_list'] = $this->source_code_model->get_source_code_list();	
+			$data['keywords_input']   = $this->input->post('keyword[]');
+			$data['selected_sc_value']= $this->input->post('sc_id');
 
 			$this->load->view('templates/header', $data);
 			$this->load->view('document/create',$data);
 			$this->load->view('templates/footer');
-		}
-		else
-		{
+		}else{
+			$data['source_code_list'] = $this->source_code_model->get_source_code_list();		
+
 			if (!$this->document_model->set_document()){
 				$this->load->view('templates/header', $data);
-				$this->load->view('document/create');
+				$this->load->view('document/create', $data);
 				$this->load->view('templates/footer');			
 			}else{
 				$data['doc_name'] 	= $this->document_model->input->post('name') ;
