@@ -34,24 +34,11 @@
 
 	// Populate the keyword input with already 
 	// inputed values
-	function populateKWList(input_name, input_value){
-		//console.log(input_name);
-		//console.log(input_value);
-		//console.log($('#div_doc_keywords > .'+input_name));
-		//console.log($('.div_doc_keywords').find('.'+input_name));
-		//console.log($('.div_doc_keywords').find('#'+input_name));
-		//console.log($('#div_doc_keywords').find('#'+input_name));
-		$chi = $('#div_doc_keywords').children();
-		console.log($chi[1].className);
-		console.log($chi.next(".keyword"));
-
-		if ($chi[1].className == input_name){
-			console.log('yesssss');
-		}
-		//console.log($chi);
-		//console.log($('#div_doc_keywords').children().find('.'+input_name));
-		
-		$('.div_doc_keywords').find("."+input_name).val(input_value);
+	function populateKWList(input_name, input_value){		
+		input_name = input_name.replace("[","\\[");
+		input_name = input_name.replace("]","\\]");
+		console.log($(".div_doc_keywords").find("."+input_name));
+		$(".div_doc_keywords").find("."+input_name).val(input_value);
 	}
 
 	function preSelectSC(sc_select_value){
