@@ -49,6 +49,7 @@ class document_model extends CI_Model {
                     'doc_sc_id' => $this->input->post('sc_id'),
             );
 
+            // TODO : insert keywords
             $keywords = $this->input->post('keyword[]');
             var_dump($keywords);
 

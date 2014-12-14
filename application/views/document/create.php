@@ -1,12 +1,11 @@
 <?php
-	echo "<script>";
-	echo "$(document).ready((function() {";
-		if (isset($selected_sc_value)){
-			echo "preSelectSC('".$selected_sc_value."');";
-		}
-
-	echo "}));";	
-	echo "</script>";
+	if (isset($selected_sc_value)){
+		echo "<script>";
+		echo "$(document).ready((function() {";
+		echo "preSelectSC('".$selected_sc_value."');";
+		echo "}));";	
+		echo "</script>";
+	}
 ?>
 
 <script>
@@ -55,10 +54,9 @@
 	echo "function populateKWListCallBack(){";
 		if (isset($keywords_input)){
 			echo "\n";
+			//var_dump($keywords_input);
 			foreach ($keywords_input as $key => $value) {
-				echo "\n";
-				//echo "console.log('".$value."');";
-				echo "populateKWList('".$key."','".$value."');";
+				echo "populateKWList('".$key."','".$value."');";					
 			}			
 		}
 	echo "};";

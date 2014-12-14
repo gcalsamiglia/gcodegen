@@ -59,19 +59,23 @@ class document extends CI_Controller {
 										  'Source code selection',
 										  'required');
 
-		$this->form_validation->set_rules('keyword[]', 
+		/*$this->form_validation->set_rules('keyword[]', 
 										  'Keyword', 
+										  'required');*/
+		$posts = $this->input->post(NULL,TRUE);
+		foreach ($posts as $key => $value) {
+			if (substr($key,0,strlen($this->config->item('keyword_input_prefix'))) === $this->config->item('keyword_input_prefix')){
+				$data['keywords_input'][$key] = $value;
+				$this->form_validation->set_rules($key, 
+										  $key, 
 										  'required');
+			}	
+		}
 
 		if ($this->form_validation->run() === FALSE)
 		{
 			$data['source_code_list'] = $this->source_code_model->get_source_code_list();
-			$posts = $this->input->post(NULL,TRUE);
-			foreach ($posts as $key => $value) {
-				if (substr($key,0,strlen($this->config->item('keyword_input_prefix'))) === $this->config->item('keyword_input_prefix')){
-					$data[$key] = $value;
-				}	
-			}
+
 			
 			$data['selected_sc_value']= $this->input->post('sc_id');
 
