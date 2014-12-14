@@ -511,5 +511,8 @@ $config['rewrite_short_tags'] = FALSE;
 $config['proxy_ips'] = '';
 
 
+// Codegen specific config
+$config["keyword_input_prefix"] = "kwi_";
+
 /* End of file config.php */
 /* Location: ./application/config/config.php */

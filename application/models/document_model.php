@@ -48,6 +48,10 @@ class document_model extends CI_Model {
                     'doc_name'  => $this->input->post('name'),
                     'doc_sc_id' => $this->input->post('sc_id'),
             );
+
+            $keywords = $this->input->post('keyword[]');
+            var_dump($keywords);
+
             if ($this->document_exists_by_name($data['doc_name']))
             {
                 return FALSE;

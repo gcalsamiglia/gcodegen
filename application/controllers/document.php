@@ -7,8 +7,11 @@ class document extends CI_Controller {
 		$this->load->model('document_model');
 		$this->load->model('source_code_model');    
 	}    
-
+	/*
+	*  Find the keywords in the naked source code  	
+	*/
 	public function get_source_code_keywords_json($sc_id){
+
 		// recup du source code brut
         $data['result'] = $this->source_code_model->get_source_code_naked($sc_id);
         // split en fonction du séparateur
@@ -62,8 +65,14 @@ class document extends CI_Controller {
 
 		if ($this->form_validation->run() === FALSE)
 		{
-			$data['source_code_list'] = $this->source_code_model->get_source_code_list();	
-			$data['keywords_input']   = $this->input->post('keyword[]');
+			$data['source_code_list'] = $this->source_code_model->get_source_code_list();
+			$posts = $this->input->post(NULL,TRUE);
+			foreach ($posts as $key => $value) {
+				if (substr($key,0,strlen($this->config->item('keyword_input_prefix'))) === $this->config->item('keyword_input_prefix')){
+					$data[$key] = $value;
+				}	
+			}
+			
 			$data['selected_sc_value']= $this->input->post('sc_id');
 
 			$this->load->view('templates/header', $data);
@@ -87,6 +96,4 @@ class document extends CI_Controller {
 		}
 	}    
 }
-
-
 ?>
