@@ -28,3 +28,11 @@ body {
 ul {
 	list-style-type: none;
 }
+
+.simple_frame {
+    background: none repeat scroll 0 0 #eeeeee;
+    border-style: solid;
+    border-width: thin;
+    padding: 10px;
+    border-radius: 5px;
+}

@@ -1,3 +1,4 @@
+<div class="simple_frame">
 <?php
 foreach($doc_array as $doc)
 {
@@ -7,4 +8,5 @@ foreach($doc_array as $doc)
 
 }
 ?>
+</div>
 
