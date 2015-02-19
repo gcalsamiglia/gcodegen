@@ -98,6 +98,15 @@ class document extends CI_Controller {
 				$this->load->view('templates/footer');	
 			}
 		}
-	}    
+	}   
+
+	public function listAllDocuments()
+	{
+		$data['title'] = 'Liste des documents disponibles';
+		$data['doc_array'] = $this->document_model->get_document_list();
+		$this->load->view('templates/header', $data);
+		$this->load->view('document/list', $data);
+		$this->load->view('templates/footer');	
+	} 
 }
 ?>

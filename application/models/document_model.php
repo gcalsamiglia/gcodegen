@@ -13,11 +13,20 @@ class document_model extends CI_Model {
                 return $query->result_array();
         }
         $query = $this->db->get_where('document', array('doc_id' => (string)$doc_id)); 
-        
-        //show_error($query);
         return $query->row_array();
     }
 
+    // --------------------------------------------------------------------------------------------------
+    /**
+     * Returns a list containing available documents
+     *
+     * @return  array   documents
+     */    
+    public function get_document_list()
+    {
+        $query = $this->db->get('document');
+        return $query->result_array();
+    }
 
 
     // --------------------------------------------------------------------------------------------------
