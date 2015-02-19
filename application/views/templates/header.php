@@ -1,6 +1,7 @@
 <html>
 <h1><?php echo $title ?></h1>
 <head>
+	<link rel="stylesheet" href="/public/style/style.css">
 	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
     <title><?php echo $title ?></title>
 </head>
