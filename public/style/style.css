@@ -29,10 +29,26 @@ ul {
 	list-style-type: none;
 }
 
+li {
+    display: inline-block;
+    padding-right: 10px;
+}
+
 .simple_frame {
     background: none repeat scroll 0 0 #eeeeee;
     border-style: solid;
     border-width: thin;
     padding: 10px;
     border-radius: 5px;
+}
+
+.cell_tab_doc{
+    /*width: 20%;*/
+    display: inline-block;
+    padding-left: 10px;
+    width:20%;
+}
+
+.row_tab_doc{
+    
 }

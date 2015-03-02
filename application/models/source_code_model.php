@@ -29,6 +29,7 @@ class source_code_model extends CI_Model {
         {
             foreach ($query->result() as $row)
             {
+
                 $result = $result.$row->sc_value;
             }
         }

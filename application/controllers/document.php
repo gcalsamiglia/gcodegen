@@ -27,19 +27,25 @@ class document extends CI_Controller {
 
 	public function view($doc_id)
 	{
+			// recup du document (row)
             $doc_id = (string) $doc_id;    
       		$data['document'] = $this->document_model->get_document($doc_id);
-                if (empty($data['document']))
-                {
-                        show_404();
-                }
-                
-                $data['title']    = $data['document']['doc_name'];
-                $data['doc_name'] = $data['document']['doc_name'];
+            if (empty($data['document']))
+            {
+                    show_404();
+            }
+            $data['title']    = $data['document']['doc_name'];
+            $data['doc_name'] = $data['document']['doc_name'];
 
-                $this->load->view('templates/header', $data);
-                $this->load->view('document', $data);
-                $this->load->view('templates/footer');                
+
+           	// recup du source code brut
+            $data['sc_text'] = $this->source_code_model->get_source_code_naked($data['document']['doc_sc_id']);	
+
+
+            // Chargement de la vue	
+            $this->load->view('templates/header', $data);
+            $this->load->view('document', $data);
+            $this->load->view('templates/footer');                
     }
 
 	public function create()
