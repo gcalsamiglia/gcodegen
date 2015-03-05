@@ -35,7 +35,5 @@ class source_code_model extends CI_Model {
         }
         return $result;
     }
-
-
 }
 ?>

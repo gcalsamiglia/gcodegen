@@ -69,9 +69,10 @@
 	echo form_open('index.php/document/create',$attributes); 
 ?>
 
-<h5>name</h5>
+<h5>Nom du nouveau document :</h5>
 <input type="text" name="name" value="" size="50" />
-<select name="sc_id" id="sc_id">
+
+<h5>Basé sur le code source : <select name="sc_id" id="sc_id">
 
 	<?php
 		foreach($source_code_list as $source_code)
@@ -82,6 +83,7 @@
 	?>
 
 </select> 
+</h5>
 <div class="div_doc_keywords" id="div_doc_keywords">
 </div>
 <div><input type="submit" value="Submit" /></div>

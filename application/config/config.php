@@ -513,6 +513,7 @@ $config['proxy_ips'] = '';
 
 // Codegen specific config
 $config["keyword_input_prefix"] = "kwi_";
+$config["sc_separator"]         = "@sc@";
 
 /* End of file config.php */
 /* Location: ./application/config/config.php */

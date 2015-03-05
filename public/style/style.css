@@ -52,3 +52,21 @@ li {
 .row_tab_doc{
     
 }
+
+textarea {
+    background-color: lightblue;
+    border-width: 0;
+}
+
+.footer_copyrights {
+    background-color: lime;
+    text-align: center;
+    border-radius: 5px;
+}
+
+.div_doc_keywords {
+    background-color: gold;
+    width: 350px;
+    padding: 10px;
+    padding-bottom: 20px;
+}

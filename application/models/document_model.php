@@ -3,6 +3,8 @@ class document_model extends CI_Model {
 	public function __construct()
 	{
 		$this->load->database();
+        $this->load->model('source_code_model');
+        $this->load->model('keyword_list_model');
 	}
         
     public function get_document($doc_id = FALSE)
@@ -45,19 +47,18 @@ class document_model extends CI_Model {
 
     /**
     *
-    *   renvoi le document $doc_id traduit vaec ses keywords
+    *   renvoi le document $doc_id traduit avec ses keywords
     *
     *
     *
     */
-    public function translate($texteBrut, $keywords, $doc_id){
-        // recup du source code brut
-        //$texteBrut = $this->source_code_model->get_source_code_naked($data['document']['doc_sc_id']); 
+    public function translate($doc_id){
+        $data['document'] = $this->document_model->get_document($doc_id);    
+        $texteBrut = $this->source_code_model->get_source_code_naked($data['document']['doc_sc_id']); 
 
-        //
-        //$keywords = $this->keyword_list_model->getCoupleByKeywordListId($data['document']['doc_id']);
+        $keywords = $this->keyword_list_model->getCoupleByKeywordListId($data['document']['doc_id']);
         foreach ($keywords as $syntaxicCode => $translatedValue) {
-            str_replace("@@".$syntaxicCode."@@", $translatedValue, $texteBrut);
+            $texteBrut = str_replace($this->config->item('sc_separator').$syntaxicCode.$this->config->item('sc_separator'), $translatedValue, $texteBrut);
         }        
         return $texteBrut;
     }
