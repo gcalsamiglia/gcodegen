@@ -7,12 +7,20 @@ class keyword_list_model extends CI_Model {
 	}
 
 	/*
-	* Renvoi les couples Keyword, Valeur d'un keyWordList
+	* Renvoi les couples (Keyword, Valeur) d'un document
+	* sous forme d'un tableau associatif
 	*/
-	public getCoupleByKeywordListId($kwl_id){
-		$query = $this->db->get_where('keyword_list', array('kwl_id' => (string)$kwl_id));
-
-		// A finir et tester
-		return 
+	public function getCoupleByKeywordListId($doc_id){
+		
+        $query  = $this->db->query( 'SELECT keyword.kw_syntaxic_code, keyword.kw_translated_value
+                            		FROM keyword
+                            		INNER JOIN keyword_list ON keyword_list.kwl_keyword_id = keyword.kw_id
+                            		WHERE keyword_list.kwl_document_id = '.$doc_id);
+		foreach ($query->result() as $row)
+		{
+        	$result[$row->kw_syntaxic_code]=$row->kw_translated_value;
+		}	
+		return $result;
 	}
+}
 ?>

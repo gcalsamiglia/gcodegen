@@ -5,7 +5,8 @@ class document extends CI_Controller {
 	{
 		parent::__construct();
 		$this->load->model('document_model');
-		$this->load->model('source_code_model');    
+		$this->load->model('source_code_model');
+		$this->load->model('keyword_list_model'); 
 	}    
 	/*
 	*  Find the keywords in the naked source code  	
@@ -37,10 +38,7 @@ class document extends CI_Controller {
             $data['title']    = $data['document']['doc_name'];
             $data['doc_name'] = $data['document']['doc_name'];
 
-
-           	// recup du source code brut
-            $data['sc_text'] = $this->source_code_model->get_source_code_naked($data['document']['doc_sc_id']);	
-
+			$data['the_graal'] = $this->document_model->translate($doc_id);
 
             // Chargement de la vue	
             $this->load->view('templates/header', $data);

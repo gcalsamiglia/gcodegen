@@ -42,6 +42,26 @@ class document_model extends CI_Model {
         return ($query->num_rows() > 0); 
     }
 
+
+    /**
+    *
+    *   renvoi le document $doc_id traduit vaec ses keywords
+    *
+    *
+    *
+    */
+    public function translate($texteBrut, $keywords, $doc_id){
+        // recup du source code brut
+        //$texteBrut = $this->source_code_model->get_source_code_naked($data['document']['doc_sc_id']); 
+
+        //
+        //$keywords = $this->keyword_list_model->getCoupleByKeywordListId($data['document']['doc_id']);
+        foreach ($keywords as $syntaxicCode => $translatedValue) {
+            str_replace("@@".$syntaxicCode."@@", $translatedValue, $texteBrut);
+        }        
+        return $texteBrut;
+    }
+
     public function get_keywords($doc_id){
 
     }
