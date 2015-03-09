@@ -89,8 +89,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 $route['translate_uri_dashes'] = FALSE;
 $route['document/create'] = 'document/create';
 $route['document/list']   = 'document/listAllDocuments';
+$route['source_code/list']   = 'source_code/listAllSources';
 $route['document/getsourcecodekw/(:any)'] = 'document/get_source_code_keywords_json/$1';
 $route['document/(:any)'] = 'document/view/$1';
+$route['source_code/(:any)'] = 'source_code/view/$1';
 $route['default_controller'] = "blog";
 $route['404_override'] = '';
 

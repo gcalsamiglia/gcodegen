@@ -9,6 +9,7 @@
 	<nav>
 		<ul>
 			<li><a href="/index.php/document/create">Create Document</a></li>
-			<li><a href="/index.php/document/list">All documents</a></li>
+			<li><a href="/index.php/document/list">All documents</a></li>			
+			<li><a href="/index.php/source_code/list">All Sources</a></li>
 		</ul>
 	</nav>	
