@@ -1,5 +1,5 @@
 <?php
-class document extends CI_Controller {
+class Document extends CI_Controller {
 
 	public function __construct()
 	{
@@ -7,7 +7,10 @@ class document extends CI_Controller {
 		$this->load->model('document_model');
 		$this->load->model('source_code_model');
 		$this->load->model('keyword_list_model'); 
-	}    
+	}  
+	public function index(){
+		echo "test";
+	}  
 	/*
 	*  Find the keywords in the naked source code  	
 	*/

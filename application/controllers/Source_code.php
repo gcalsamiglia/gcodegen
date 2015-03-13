@@ -1,5 +1,5 @@
 <?php
-class source_code extends CI_Controller {
+class Source_code extends CI_Controller {
 
 	public function __construct()
 	{
