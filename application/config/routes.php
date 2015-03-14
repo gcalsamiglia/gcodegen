@@ -86,18 +86,14 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 |		my-controller/my-method	-> my_controller/my_method
 */
 
-$route['translate_uri_dashes'] 	= FALSE;
-//$route['blog']					= "blog/index";
-//$route['document/list'] 		= "document/listAllDocuments";
-$route['404_override'] 			= '';
-$route['default_controller']    = 'document';
 
-/*
-$route['document/(:any)'] = 'document/view/$1';
-$route['document']="document";
-$route['default_controller'] = "document";
-$route['404_override'] = '';
-*/
+$route['document/list'] 						= "document/listAllDocuments";
+$route['document/getsourcecodekw/(:any)'] 		= "document/get_source_code_keywords_json/$1";
+$route['source_code/list'] 						= "source_code/listAllSources";
+$route['document/create']						= "document/create";
+$route['404_override'] 							= '';
+$route['default_controller']    				= 'document';
+$route['translate_uri_dashes'] 					= FALSE;
 
 /* End of file routes.php */
 /* Location: ./application/config/routes.php */

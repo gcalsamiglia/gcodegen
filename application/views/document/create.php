@@ -66,7 +66,7 @@
 <?php
 	echo validation_errors();
 	$attributes = array('id' => 'document_create'); 
-	echo form_open('index.php/document/create',$attributes); 
+	echo form_open('document/create',$attributes); 
 ?>
 
 <h5>Nom du nouveau document :</h5>
