@@ -19,7 +19,7 @@ class Document extends CI_Controller {
 		// recup du source code brut
         $data['result'] = $this->source_code_model->get_source_code_naked($sc_id);
         // split en fonction du séparateur
-        $splitted_source = preg_split("/@sc@/", $data['result'] );	
+        $splitted_source = preg_split("/".$this->config->item('sc_separator')."/", $data['result'] );	
         $keywords = array();
         // On en saute 1 sur 2
 		for ($i = 1; $i < count($splitted_source) ; $i=$i+2) {
