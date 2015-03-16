@@ -1,0 +1,7 @@
+Création source: 
+	- nom
+	- texte (value)
+	- liste de source code déjà existants
+		- tris ? (jquery) 
+Liste de source 
+	- bouton désactiver (source plus dispo mais pas de suppression)	

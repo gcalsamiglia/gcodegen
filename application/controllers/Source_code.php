@@ -36,5 +36,28 @@ class Source_code extends CI_Controller {
         $this->load->view('templates/footer');			
 	}
 
+	public function create(){
+		$this->load->helper('form');
+		$this->load->library('form_validation');
+		$this->form_validation->set_rules('name',
+										  'name',
+										  'required', 
+										  array('required'=>'The Source_code name is required')
+										  );
+
+		$data['title'] = "Création d'un nouveau source_code";
+		if ($this->form_validation->run() === FALSE){
+
+			$this->load->view('templates/header', $data);
+			$this->load->view('source_code/create',$data);
+			$this->load->view('templates/footer');
+		}		
+
+		//$this->form_validation->set_rules('value',
+		//								  'Source code value',
+		//								  'required');
+
+
+	}
 }
 ?>

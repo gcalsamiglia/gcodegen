@@ -11,5 +11,6 @@
 			<li><a href="/index.php/document/create">Create Document</a></li>
 			<li><a href="/index.php/document/list">All documents</a></li>			
 			<li><a href="/index.php/source_code/list">All Sources</a></li>
+			<li><a href="/index.php/source_code/create">Create Source</a></li>
 		</ul>
 	</nav>	
