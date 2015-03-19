@@ -33,8 +33,7 @@
 		echo "<li class=\"ui-state-default list-dragable\" >";
 		echo $ligne_source_code['sc_id'];
 		echo $ligne_source_code['sc_name'];	
-		echo "<input type=\"checkbox\" name=\"".$ligne_source_code['sc_id']."\" value=\"".$ligne_source_code['sc_id']."\"></input>";
-		echo "<input type=\"hidden\" name=\"position\" value=\"".$indice."\"></input>";
+		echo "<input type=\"checkbox\" name=\"checked_sc".$ligne_source_code['sc_id']."\" value=\"".$ligne_source_code['sc_id']."\">";
 		echo "</li>";
 	}
 	echo "</ul>";

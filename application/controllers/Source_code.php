@@ -37,6 +37,12 @@ class Source_code extends CI_Controller {
 	}
 
 	public function create(){
+		$post_test = $this->input->post();
+		foreach ($post_test as $key => $value) {
+			var_dump($key);
+			var_dump($value);
+		}
+
 		$this->load->helper('form');
 		$this->load->library('form_validation');
 		$this->form_validation->set_rules('name',
