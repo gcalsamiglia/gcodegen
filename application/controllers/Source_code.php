@@ -45,6 +45,8 @@ class Source_code extends CI_Controller {
 										  array('required'=>'The Source_code name is required')
 										  );
 
+		$data['active_source_code'] = $this->source_code_model->get_activated_source_code_list();
+
 		$data['title'] = "Création d'un nouveau source_code";
 		if ($this->form_validation->run() === FALSE){
 

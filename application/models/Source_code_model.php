@@ -10,7 +10,15 @@ class Source_code_model extends CI_Model {
     {
         $this->db->select('sc_id');   
         $this->db->select('sc_name');   
-        $query = $this->db->get('source_code');
+        $query = $this->db->get('ce_code');
+        return $query->result_array();
+    }
+
+    public function get_activated_source_code_list()
+    {
+        $this->db->select('sc_id');   
+        $this->db->select('sc_name');   
+        $query = $this->db->get_where('source_code', array('sc_active' => 1));
         return $query->result_array();
     }
 
