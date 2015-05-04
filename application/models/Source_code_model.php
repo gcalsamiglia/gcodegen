@@ -10,7 +10,7 @@ class Source_code_model extends CI_Model {
     {
         $this->db->select('sc_id');   
         $this->db->select('sc_name');   
-        $query = $this->db->get('ce_code');
+        $query = $this->db->get('source_code');
         return $query->result_array();
     }
 
