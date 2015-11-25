@@ -1,6 +1,3 @@
-[user]
-  name = gcalsamiglia
-  email = gcalsamiglia@groupempsa.com
 [alias]
   ci = commit
   co = "!./.git/hooks/pre-checkout"
