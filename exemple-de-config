@@ -1,0 +1,69 @@
+[user]
+  name = gcalsamiglia
+  email = gcalsamiglia@groupempsa.com
+[alias]
+  ci = commit
+  co = "!./.git/hooks/pre-checkout"
+  st = status
+  br = branch
+  hist = log --pretty=format:\"%h %ad | %s%d [%an]\" --graph --date=short
+  type = cat-file -t
+  dump = cat-file -p
+  lg = log --graph --pretty=tformat:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%an %ar)%Creset'
+  diffcw = diff --color-words
+  diffca = diff --cached
+[core]
+  preloadindex = true
+  autocrlf = false
+	whtiespace = cr-at-eol
+	whitespace = cr-at-eol
+[help]
+  autocorrect = 20
+[merge]
+  conflictStyle = diff3
+  summary = true
+[gc]
+  auto = 500
+[diff]
+  wordRegex = .
+[color]
+  diff = true
+  branch = true
+  interactive = true
+  status = true
+[status]
+  showUntrackedFiles = all
+[push]
+  default = upstream
+[pull]
+  rebase = preserve
+[credential]
+  helper = store
+[include]
+  path = .gitconfig.local
+
+B
+B
+B
+B
+B
+B
+B
+B
+B
+B
+B
+B
+B
+B
+B
+B
+B
+B
+B
+B
+B
+B
+B
+B
+
